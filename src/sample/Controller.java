@@ -1,7 +1,6 @@
 package sample;
 
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -53,7 +52,7 @@ public class Controller {
         clearErrors();
         char c = key.getCharacter().charAt(0);
 
-        if(!(((c >= '0') && (c <= '9')) || (c == Keys.DELETE) || (c == Keys.BACKSPACE) || (c == Keys.ENTER))){
+        if(!(Character.isDigit(c) || (c == Keys.DELETE) || (c == Keys.BACKSPACE) || (c == Keys.ENTER))){
             key.consume();
         }
         else if((ageTextF.getText().length() >= 2) && (c != Keys.DELETE) && (c != Keys.BACKSPACE) && (c != Keys.ENTER)){
@@ -102,7 +101,7 @@ public class Controller {
         TextField tf = (TextField) key.getSource();
         char c = key.getCharacter().charAt(0);
 
-        if(!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == Keys.DELETE || c == Keys.BACKSPACE || c == Keys.ENTER || c == Keys.DASH || c == Keys.SPACE)){
+        if(!(Character.isLetter(c) || c == Keys.DELETE || c == Keys.BACKSPACE || c == Keys.ENTER || c == Keys.DASH || c == Keys.SPACE)){
             key.consume();
         }
         if(c == 13){
