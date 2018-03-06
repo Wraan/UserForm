@@ -105,10 +105,25 @@ public class Controller {
             key.consume();
         }
         if(c == 13){
-            if(tf.getId().equals("fornameTextF"))
-                nameTextF.requestFocus();
-            if(tf.getId().equals("nameTextF"))
-                ageTextF.requestFocus();
+            if(!tf.getText().trim().equals("")) {
+                if (tf.getId().equals("fornameTextF"))
+                    nameTextF.requestFocus();
+                if (tf.getId().equals("nameTextF"))
+                    ageTextF.requestFocus();
+            }
+            else{
+                textFieldEmptyError(tf);
+            }
+
+        }
+    }
+
+    private void textFieldEmptyError(TextField tf) {
+        if (tf.getId().equals("fornameTextF"))
+            fornameErrorLabel.setText("Pole nie może być puste!");
+
+        if (tf.getId().equals("nameTextF")) {
+            nameErrorLabel.setText("Pole nie może być puste!");
         }
     }
 
@@ -119,12 +134,7 @@ public class Controller {
             return true;
         }
         else {
-            if(tf.getId().equals("fornameTextF")) {
-                fornameErrorLabel.setText("Pole nie może być puste!");
-            }
-            if(tf.getId().equals("nameTextF")) {
-                nameErrorLabel.setText("Pole nie może być puste!");
-            }
+            textFieldEmptyError(tf);
 
             return false;
         }
